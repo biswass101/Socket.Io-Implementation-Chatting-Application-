@@ -5,13 +5,38 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chat App</title>
+    <style>
+        body {
+            background-color: rgb(92, 92, 236);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 10px;
+            align-items: center;
+        }
+        #msgs {
+            width: 200px;
+            height: 300px;
+            padding: 10px;
+            background-color: yellow;
+            word-wrap: break-word;
+            overflow-y: scroll;
+        }
+        p{
+            background-color: blue;
+            border-radius: 10px;
+            padding: 5px;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+    </style>
 </head>
 
 <body>
-    <h1>Chatting</h1>
+    <h1>Giga Chatting</h1>
+    <div id="msgs"></div>
     <input type="text" id="message" placeholder="Enter message">
     <button id="sendBtn">Send</button>
-    <div id="msgs"></div>
     <script src="/socket.io/socket.io.js"></script>
     <script>
         const socket = io()
@@ -28,6 +53,7 @@
         sendBtn.addEventListener('click', (e) => {
             const message = msgIpt.value;
             socket.emit('user-msg', message)
+            msgIpt.value = ''
         })
     </script>
 </body>
